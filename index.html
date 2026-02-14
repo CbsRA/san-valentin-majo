@@ -107,15 +107,16 @@
 
         /* Sección Final */
         #final-ask {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+    min-height: 100vh; /* "Mínimo" el alto de la pantalla, pero puede crecer */
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    text-align: center;
+    padding: 40px 10px; /* Espacio para que no pegue a los bordes */
+}
 
         .btn-love {
             padding: 20px 50px;
@@ -142,25 +143,28 @@
         }
 
         .mural-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            max-width: 900px;
-            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap; /* Permite que las fotos bajen a la siguiente fila */
+            justify-content: center;
+            gap: 10px;
+            max-width: 100%;
+            margin-top: 20px;
         }
 
         .mural-item {
+            width: 45%; /* Dos fotos por fila en el celular */
+            min-width: 140px;
+            max-width: 200px;
+            height: 150px; /* Altura fija para que todas se vean parejas */
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            height: 250px;
         }
 
         .mural-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            object-fit: cover; /* Esto evita que las fotos se estiren feo */
         }
 
         .mural-item:hover img { transform: scale(1.1); }
