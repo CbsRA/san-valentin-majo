@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ffccd5;
+            --text: #4a4a4a;
+            --bg: #fff0f3;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0; height: 6px;
+            background: var(--primary);
+            width: 0%;
+            z-index: 1000;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://www.transparenttextures.com/patterns/cubes.png');
+            padding: 20px;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--primary); margin-bottom: 10px; }
+        .scroll-hint { font-size: 1.2rem; color: #888; animation: bounce 2s infinite; }
+
+        /* Línea del tiempo */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0; bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .milestone {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .milestone.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+
+        .content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .content img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            max-height: 300px;
+        }
+
+        .date { 
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold; 
+            color: var(--primary); 
+            font-size: 1.5rem;
+            display: block; 
+            margin-bottom: 5px; 
+        }
+
+        /* Sección Final */
+        #final-ask {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .btn-love {
+            padding: 20px 50px;
+            font-size: 1.6rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .btn-love:hover { transform: scale(1.1); }
+
+        /* Estilos para el Mural */
+        .hidden-mural { display: none; opacity: 0; }
+
+        .show-mural {
+            display: block !important;
+            opacity: 1 !important;
+            animation: slideUp 1s ease-out;
+        }
+
+        .mural-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin-top: 30px;
+        }
+
+        .mural-item {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            height: 250px;
+        }
+
+        .mural-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .mural-item:hover img { transform: scale(1.1); }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .milestone { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left; }
+            .right { left: 0%; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <header>
+        <h1>Hola, Majo ❤️</h1>
+        <p>Tengo algo que recordarte...</p>
+        <div class="scroll-hint">Desliza hacia abajo 👇</div>
+    </header>
+
+    <div class="timeline">
+        <div class="milestone left">
+            <div class="content">
+                <span class="date">Enero 2025</span>
+                <img src="Fotos/Imagen5.jpg" alt="Recuerdo Enero">
+                <p>Empezamos el año con esa salida donde las risas no faltaron. Ese día nos prometimos algo importante: aprender a disfrutar de los gustos del otro, aunque seamos diferentes. Al final, aprendí que el lugar es lo de menos mientras sea a tu lado.</p>
+            </div>
+        </div>
+
+        <div class="milestone right">
+            <div class="content">
+                <span class="date">Abril 2025</span>
+                <img src="Fotos/Imagen4.jpg" alt="Huaraz">
+                <p>Nuestro viaje a <b>Huaraz</b> fue mágico, pero tú lo hiciste inolvidable. Es solo un capítulo de todos los viajes y aventuras que nos esperan de la mano. Gracias por hacer que cada paisaje fuera perfecto.</p>
+            </div>
+        </div>
+
+        <div class="milestone left">
+            <div class="content">
+                <span class="date">Julio 2025</span>
+                <img src="Fotos/Imagen30.jpg" alt="Aniversario">
+                <p>Julio es el recordatorio de que nuestra historia sigue creciendo. A pesar de los baches y retos que han aparecido, siempre logramos superar cualquier obstáculo de la mano. ¡Un año más de nuestra gran aventura!</p>
+            </div>
+        </div>
+
+        <div class="milestone right">
+            <div class="content">
+                <span class="date">Enero 2026</span>
+                <img src="Fotos/Imagen40.jpg" alt="Futuro">
+                <p>Quiero que nunca nos falten esas salidas para comer rico en lugares bonitos, pero sobre todo, que siempre nos sobren las ganas de seguir creando momentos inolvidables. Me emociona mucho todo lo que nos falta vivir juntos.</p>
+            </div>
+        </div>
+        
+        <div class="milestone left">
+            <div class="content">
+                <span class="date">Hoy</span>
+                <p>Cada día a tu lado sigue siendo mi aventura favorita. Por eso...</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="final-ask">
+        <div id="ask-content">
+            <h1>Entonces...</h1>
+            <h2>¿Quieres ser mi San Valentín este 2026?</h2>
+            <br>
+            <button id="btn-yes" class="btn-love">¡SÍ, ACEPTO! ❤️</button>
+        </div>
+
+        <div id="mural-container" class="hidden-mural">
+            <h1 style="color: #ff4d6d;">¡SABÍA QUE DIRÍAS QUE SÍ! 💖</h1>
+            <p>Por una vida llena de más momentos como estos:</p>
+            
+            <div class="mural-grid">
+                <div class="mural-item"><img src="Fotos/Imagen1.jpg" alt="Recuerdo 1"></div>
+                <div class="mural-item"><img src="Fotos/Imagen2.jpg" alt="Recuerdo 2"></div>
+                <div class="mural-item"><img src="Fotos/Imagen10.jpg" alt="Recuerdo 3"></div>
+                <div class="mural-item"><img src="Fotos/Imagen4.jpg" alt="Recuerdo 4"></div>
+            </div>
+            
+            <h3 style="margin-top: 40px; color: #ff4d6d; font-size: 2rem;">Te amo un montón ❤️</h3>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // Lógica de Scroll (Barra de progreso y aparición de hitos)
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            const milestones = document.querySelectorAll('.milestone');
+            milestones.forEach(m => {
+                const rect = m.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    m.classList.add('visible');
+                }
+            });
+        };
+
+        // Lógica del Botón "SÍ"
+        const btnYes = document.getElementById('btn-yes');
+        const askContent = document.getElementById('ask-content');
+        const muralContainer = document.getElementById('mural-container');
+
+        btnYes.addEventListener('click', () => {
+            // 1. Lanzar explosión inicial de confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#ffccd5', '#ffffff']
+            });
+
+            // 2. Cambiar visibilidad (Ocultar pregunta y mostrar mural)
+            askContent.style.display = 'none';
+            muralContainer.classList.add('show-mural');
+
+            // 3. Lluvia de corazones continua por 4 segundos
+            var end = Date.now() + (4 * 1000);
+            (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff4d6d']
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff4d6d']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        });
+    </script>
+</body>
+</html>
